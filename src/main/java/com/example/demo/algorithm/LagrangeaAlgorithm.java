@@ -9,11 +9,24 @@ public class LagrangeaAlgorithm {
 
 		Map<Integer, Integer> fakeData = new HashMap<>();
 
-		int fake = 80;
+		boolean change = false;
+		int fake = 90;
+		
 		for (int i = to; i <= (to + period); i++) {
-			fakeData.put(i, fake + 5);
+			fakeData.put(i, fake);
+			if(change) {
+				change = false;
+				fake += period;
+			}else {
+				fake -= period;
+				change = true;
+			}
 		}
-
+		//fakeData.put(1, 2);
+		//fakeData.put(2, 3);
+		//fakeData.put(3, 5);
+		//fakeData.put(5, 7);
+		
 		return fakeData;
 
 	}

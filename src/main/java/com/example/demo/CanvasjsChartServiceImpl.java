@@ -12,13 +12,19 @@ public class CanvasjsChartServiceImpl implements CanvasjsChartService {
 	@Autowired
 	private CanvasjsChartDao canvasjsChartDao;
  
+ 
 	public void setCanvasjsChartDao(CanvasjsChartDao canvasjsChartDao) {
 		this.canvasjsChartDao = canvasjsChartDao;
 	}
  
 	@Override
-	public List<List<Map<Object, Object>>> getCanvasjsChartData(AlgorithmDataModel ob) {
-		return canvasjsChartDao.getCanvasjsChartData(ob);
+	public List<List<Map<Object, Object>>> getCanvasjsChartData() {
+		return canvasjsChartDao.getCanvasjsChartData();
+	}
+
+	@Override
+	public List<List<Map<Object, Object>>> getCanvasjsChart(AlgorithmDataModel algoritmData) {
+		return canvasjsChartDao.getCnavasjsChart(algoritmData);
 	}
  
 } 

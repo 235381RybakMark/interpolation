@@ -15,36 +15,31 @@ public class CanvasjsChartController {
 
 	@Autowired
 	private CanvasjsChartService canvasjsChartService;
-
-	//@Autowired
-	private AlgorithmDataModel adm = null;
-
+	
+	private static boolean displayChart = false;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String springMVC(ModelMap modelMap) {
-		if(adm != null) {
-			List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData(adm);
-			modelMap.addAttribute("dataPointsList", canvasjsDataList);
-		}else {
-			List<List<Map<Object,Object>>> list = null;
-			modelMap.addAttribute("dataPointsList", list);
-		}
-		
-		// List<List<Map<Object, Object>>> canvasjsDataList =
-		// canvasjsChartService.getCanvasjsChartData();
+		displayChart = false;
+		//List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData();
 		//modelMap.addAttribute("dataPointsList", canvasjsDataList);
+		modelMap.addAttribute("displayChart", displayChart);
 		return "chart";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String springMVC(AlgorithmDataModel data, ModelMap model) {
-		adm = new AlgorithmDataModel();
-		int from = data.getFrom();
-		int to = data.getTo();
-		int period = data.getPeriod();
-		this.adm.setFrom(from);
-		this.adm.setTo(to);
-		this.adm.setPeriod(period);
-
+	public String springMVC(AlgorithmDataModel data, ModelMap modelMap) {
+		
+		displayChart = true;
+		
+		List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChart(data);
+		modelMap.addAttribute("dataPointsList", canvasjsDataList);
+		modelMap.addAttribute("displayChart", displayChart);
+		
 		return "chart";
 	}
+	
+	
 }
+
+

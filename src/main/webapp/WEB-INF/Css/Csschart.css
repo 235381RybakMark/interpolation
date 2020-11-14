@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.mysubform input {
+    display:block;
+    font-size:14px;
+   
+}	
+
+.mysubform input[type="text"] {
+    padding:7px 5px; 
+    margin-bottom:10px; 
+    background:rgba(0, 0, 0, 0.3);
+    color:#ffffff; border:2px solid #ffffff;
+    width:250px;
+    border-radius:5px;
+}
+
+.mysubform input[type="submit"] {
+    padding:7px;
+    background:rgba(0, 0, 0, 0.3);
+    color:#ffffff; border:2px solid #ffffff;
+    border-radius:5px;
+
+}
+
+

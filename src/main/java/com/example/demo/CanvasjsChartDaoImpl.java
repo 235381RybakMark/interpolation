@@ -9,10 +9,14 @@ import org.springframework.stereotype.Component;
 public class CanvasjsChartDaoImpl implements CanvasjsChartDao {
  
 	@Override
-	public List<List<Map<Object, Object>>> getCanvasjsChartData(AlgorithmDataModel ob) {
-		CanvasjsChartData data = new CanvasjsChartData(ob);
-		return data.getCanvasjsDataList();
-		//return CanvasjsChartData.getCanvasjsDataList();
+	public List<List<Map<Object, Object>>> getCanvasjsChartData() {
+		return CanvasjsChartData.getCanvasjsDataList();
 	}
+
+	@Override
+	public List<List<Map<Object, Object>>> getCnavasjsChart(AlgorithmDataModel algoritmData) {
+		return CanvasjsChartData.getCanvasjsLagrangeDataList(algoritmData);
+	}
+
  
 }
