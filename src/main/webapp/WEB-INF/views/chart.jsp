@@ -21,7 +21,7 @@
 			theme : "light2", // "light1", "dark1", "dark2"
 			animationEnabled : true,
 			title : {
-				text : "Interpolacja wielomianowa - Metoda Lagrangea"
+				text : "Interpolacja wielomianowa - Metoda Newtona"
 			},
 			subtitles : [ {
 				text : "Zapotrzebowanie ropy naftowej w swiecie"
@@ -56,6 +56,7 @@
 
 		if("${displayChart}" == "true"){
 			chart.render();
+			console.log("${equation}");
 		}
 		
 
@@ -66,7 +67,7 @@
 
 <body>
 
-	<form class=mysubform action="#"id="uniqueValue-123" action="canvasjschart" method="post">
+	<form class=mysubform id="uniqueValue-123" action="canvasjschart" method="post" name="myForm" onsubmit="return validateForm()">
 
 <script>
 function isNumberKey(evt) {
@@ -74,14 +75,51 @@ function isNumberKey(evt) {
     if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
        return true;
     };
+    
+    function clearBoxFrom(){
+	    var textboxFrom = document.getElementById("from").value = '';
+ 
+    }
+    
+    function clearBoxTo(){    
+	    var textboxTo = document.getElementById("to").value = '';
+ 
+    }
+    
+    function validateForm() {
+    	  var x = document.forms["myForm"]["from"].value;
+    	  var y = document.forms["myForm"]["to"].value;
+    	  
+    	  if (x < 1971) {
+    	    var textbox = document.getElementById("from");
+    	    textbox.value = "Min value is 1971";    	    
+    	    return false;
+    	  }
+    	  if (x > 2015) {
+      	    var textbox = document.getElementById("from");
+      	    textbox.value = "Max value is 2015";    	    
+      	    return false;
+      	  }
+    	  if (y > 2015){
+      	    var textbox = document.getElementById("to");
+    	    textbox.value = "Max value is 2015";    	    
+    	    return false;
+    	  }
+    	  if (y < 1971){
+        	var textbox = document.getElementById("to");
+      	    textbox.value = "Min value is 1971";    	    
+      	    return false;
+      	  }
+    	  
+    }    
 </script>
 
 		<br />
 		<label>From:</label> 	
-		<input type="text" name="from" autofocus maxlength="4" onkeypress="return isNumberKey(event)" placeholder="rok rozpoczecia" required placeholder>  
+		<input type="text" id="from" name="from" onclick="clearBoxFrom()" autofocus maxlength="4" onkeypress="return isNumberKey(event)" placeholder="rok rozpoczecia" required placeholder>  
 		<br />
 		<label>To:</label>
-		<input type="text" name="to" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="rok rozpoczecia" required placeholder>  
+		<input type="text" id="to" name="to" onclick="clearBoxTo()" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="rok zakonczenia" required placeholder>  
 		<br />
 		<label>Years:</label> 
 		<input type="text" name="period" maxlength="2" onkeypress="return isNumberKey(event)" placeholder="na ile lat chcesz rozliczyc" required placeholder >
@@ -89,6 +127,9 @@ function isNumberKey(evt) {
 		<input type="submit" class="submitbtn" value="Policz">
 		 <br />
 		  <br />
+
+		  <div>${equation}</div>
+		  
 </form>
 	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

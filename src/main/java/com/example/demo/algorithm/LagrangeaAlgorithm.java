@@ -3,6 +3,8 @@ package com.example.demo.algorithm;
 import java.io.BufferedReader;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
+import org.springframework.stereotype.Component;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class LagrangeaAlgorithm {
 
 	static long[] xval;
@@ -30,7 +33,7 @@ public class LagrangeaAlgorithm {
 		denominator();
 		ppoints();
 		data.putAll(futureUsage(to, number));
-		createEquation();
+		Equation.equation = createEquation();
 
 		return data;
 	}
@@ -151,7 +154,7 @@ public class LagrangeaAlgorithm {
 	
 
 	private static Map<Integer, Integer> readValues() throws IOException {
-		String filePath = "src/main/resources/oil.txt";
+		String filePath = "src/main/resources/oil3.txt";
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		String line;
 
