@@ -26,9 +26,13 @@ public class LagrangeaAlgorithm {
 	// ------------------------- glowna metoda --------------------------------------
 	public static Map<Integer, Integer> calculate(int from, int to, int number) {
 
-		Map<Integer, Integer> data = new HashMap<>();
+		Map<Integer, Integer> data = new HashMap<Integer, Integer>();
 
 		data = prep(from, to);
+		
+		if(data.containsKey(0) && data.containsValue(0))
+			return data;
+		
 
 		denominator();
 		ppoints();
@@ -71,6 +75,9 @@ public class LagrangeaAlgorithm {
 		try {
 			Map<Integer, Integer> map;
 			map = readValues();
+			
+			if(map.containsKey(0) && map.containsValue(0))
+				return map;
 
 			for (Iterator<Map.Entry<Integer, Integer>> it = map.entrySet().iterator(); it.hasNext();) {
 				Map.Entry<Integer, Integer> entry = it.next();
@@ -89,6 +96,8 @@ public class LagrangeaAlgorithm {
 				xval[i] = list.get(i);
 				yval[i] = map.get((int) xval[i]);
 			}
+			
+		
 
 			returnedMap = map;
 
@@ -164,6 +173,12 @@ public class LagrangeaAlgorithm {
 
 			Integer key = Integer.parseInt(parts[0]);
 			Integer val = Integer.parseInt(parts[1]);
+			
+			if(map.containsKey(key)) {
+				Map<Integer, Integer> emptyMap =  new HashMap<Integer, Integer>();
+				emptyMap.put(0,0);
+				return emptyMap;
+			}
 
 			map.put(key, val);
 		}
