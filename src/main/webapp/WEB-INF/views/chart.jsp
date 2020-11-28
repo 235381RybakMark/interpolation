@@ -127,7 +127,7 @@ function isNumberKey(evt) {
 		<input type="submit" class="submitbtn" value="Policz">
 		 <br />
 		  <br />
-
+		<div>${errorNotification}</div>
 		  <div>${equation}</div>
 		  
 </form>

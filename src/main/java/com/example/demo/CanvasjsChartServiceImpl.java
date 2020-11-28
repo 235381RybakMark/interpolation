@@ -24,7 +24,8 @@ public class CanvasjsChartServiceImpl implements CanvasjsChartService {
 
 	@Override
 	public List<List<Map<Object, Object>>> getCanvasjsChart(AlgorithmDataModel algoritmData) {
-		return canvasjsChartDao.getCnavasjsChart(algoritmData);
+		List<List<Map<Object, Object>>> data = canvasjsChartDao.getCnavasjsChart(algoritmData); 
+		return data;
 	}
  
 } 

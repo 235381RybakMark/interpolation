@@ -26,31 +26,34 @@ public class CanvasjsChartController {
 	private CanvasjsChartService canvasjsChartService;
 	@Autowired
 	private LagrangeaAlgorithm la;
-	
+
 	private static boolean displayChart = false;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String springMVC(ModelMap modelMap) {
 		displayChart = false;
-		//List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData();
-		//modelMap.addAttribute("dataPointsList", canvasjsDataList);
+		// List<List<Map<Object, Object>>> canvasjsDataList =
+		// canvasjsChartService.getCanvasjsChartData();
+		// modelMap.addAttribute("dataPointsList", canvasjsDataList);
 		modelMap.addAttribute("displayChart", displayChart);
 		return "chart";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String springMVC(@ModelAttribute("data")AlgorithmDataModel data, ModelMap modelMap, BindingResult result) {
-		
-		displayChart = true;	
+	public String springMVC(@ModelAttribute("data") AlgorithmDataModel data, ModelMap modelMap, BindingResult result) {
+
+		displayChart = true;
 		List<List<Map<Object, Object>>> canvasjsDataList = canvasjsChartService.getCanvasjsChart(data);
-		modelMap.addAttribute("dataPointsList", canvasjsDataList);
-		modelMap.addAttribute("displayChart", displayChart);
-		modelMap.addAttribute("equation", Equation.equation);
-		
+		if (canvasjsDataList == null) {
+			modelMap.addAttribute("errorNotification", "Zdublowany rok w danych. Sprawdz plik oil3.txt");
+		} else {
+			modelMap.addAttribute("errorNotification", "");
+			modelMap.addAttribute("dataPointsList", canvasjsDataList);
+			modelMap.addAttribute("displayChart", displayChart);
+			modelMap.addAttribute("equation", Equation.equation);
+		}
+
 		return "chart";
 	}
-	
-	
+
 }
-
-
