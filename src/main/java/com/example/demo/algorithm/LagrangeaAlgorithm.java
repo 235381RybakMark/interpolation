@@ -15,11 +15,11 @@ public class LagrangeaAlgorithm {
 
 	
 	// ------------------------- glowna metoda --------------------------------------
-	public static Map<Integer, Integer> calculate(double number) {
+	public static Map<Integer, Double> calculate(double number) {
 
-		Map<Integer, Integer> data = new HashMap<Integer, Integer>();
+		Map<Integer, Double> data = new HashMap<Integer, Double>();
 
-		data.put(1, 1);
+		data.put(1, 1.0);
 		
 		return data;
 	}
