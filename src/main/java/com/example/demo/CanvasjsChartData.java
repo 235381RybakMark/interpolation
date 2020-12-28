@@ -29,7 +29,7 @@ public class CanvasjsChartData {
 	public static void initData(AlgorithmDataModel algoritmData) {
 		list = new ArrayList<List<Map<Object,Object>>>();
 		dataPoints1 = new ArrayList<Map<Object, Object>>();
-		HashMap<Integer, Integer> data = (HashMap<Integer, Integer>) LagrangeaAlgorithm.calculate(algoritmData.getFrom(), algoritmData.getTo(), algoritmData.getPeriod());
+		HashMap<Integer, Integer> data = (HashMap<Integer, Integer>) LagrangeaAlgorithm.calculate(algoritmData.getFrom());
 		TreeMap<Integer, Integer> sorted = new TreeMap<>();
 		sorted.putAll(data);
 		
