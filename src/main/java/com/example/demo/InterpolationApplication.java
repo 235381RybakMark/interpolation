@@ -10,7 +10,7 @@ public class InterpolationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InterpolationApplication.class, args);	
-		System.out.println(LagrangeaAlgorithm.calculate(0.02));
+//		System.out.println(LagrangeaAlgorithm.calculate(0.000005));
 	}
 
 }
