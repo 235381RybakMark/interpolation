@@ -21,6 +21,10 @@ function clearBoxFrom(){
 
 }
 
+function isNumeric(n) {
+	  return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+
 function validateForm() {
  	  var g = document.forms["myForm2"]["from2"].value;
  	  
@@ -34,6 +38,14 @@ function validateForm() {
    	    textbox.value = "Max value is < 1";    	    
    	    return false;
    	  }
+ 	  
+ 	  if(isNumeric(g)){
+ 		 console.log(g); 
+ 	  }else{
+ 	   	    var textbox = document.getElementById("from2");
+ 	   	    textbox.value = "Not a number";    	    
+ 	   	    return false;
+ 	  }
  	  
  }
 
