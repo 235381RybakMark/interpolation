@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,18 +53,20 @@ function validateForm() {
 </script>
 </head>
 
-	<form class=mysubform id="uniqueValue-124" action="zad2" method="post" name="myForm2" onsubmit="return validateForm()">
+
+
+	<form:form class="mysubform" id="uniqueValue-124" action="zad2" method="post" name="myForm2" onsubmit="return validateForm()" modelAttribute="precision">
 		<br/>
 		<label>Enter precision:</label> 	
-			<input type="text" step="any" id="from2" name="from2" onclick="clearBoxFrom()" onkeypress="return isNumberKey(event)" placeholder="Precision must be ranged in (0,1)" required placeholder>  
+			<form:input path="precision" type="text" step="any" id="from2" name="from2" onclick="clearBoxFrom()" onkeypress="return isNumberKey(event)" placeholder="Precision must be ranged in (0,1)" />  
 			<br/> 
 		<input type="submit" value="Calculate">		  
-	</form>
+	</form:form>
 	
 	<div id="resultData">
-	Approximate solution of the equation: <b>${key}</b>
+	Approximate solution of the equation: <b>${value}</b>
 	<br/>
-	Number of steps: <b>${value}</b>
+	Number of steps: <b>${key}</b>
 	</div>
 	
 	<img src="/images/zadanie2.jpg" class="img" />
