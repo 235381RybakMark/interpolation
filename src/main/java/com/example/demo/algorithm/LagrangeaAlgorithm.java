@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LagrangeaAlgorithm {
-
-
 	
 	// ------------------------- glowna metoda --------------------------------------
 	public static Map<Integer, Double> calculate(double number) {
@@ -19,8 +17,6 @@ public class LagrangeaAlgorithm {
 		Map<Integer, Double> data = new HashMap<Integer, Double>();
 
 		 data = iteracjeProstych(number); 
-		
-		//data.put(1, 3.14); //fake response
 		
 		return data;
 	}
@@ -35,23 +31,17 @@ public class LagrangeaAlgorithm {
 			double last = calculationSteps.get(calculationSteps.size() - 1);
 			double approximateResult = 0.0;
 			
-			approximateResult = -2.0 * Math.pow(last, 3) + Math.sin(last) - 1.0; //one way
-			
-		//	approximateResult = 1.0 / (-2.0 * Math.pow(last, 2) - 1.0 + (Math.sin(last)/last)); //another way, even worse
-
-			
+			approximateResult = Math.cbrt((-last + Math.sin(last) - 1) /2);
+				
 			calculationSteps.add(approximateResult);
 			
-			System.out.println(approximateResult);
+			System.out.println(approximateResult); 
 			
 		}while (Math.abs(calculationSteps.get(calculationSteps.size() - 1) - calculationSteps.get(calculationSteps.size() - 2)) > accuracy);
 			
 		Map<Integer, Double> data = new HashMap<Integer, Double>();
 		data.put(calculationSteps.size()-1, calculationSteps.get(calculationSteps.size() - 1));
 		
-		
 		return data;
-	}
-	
-	
+	}		
 }
