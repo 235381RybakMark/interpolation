@@ -23,8 +23,13 @@ public class ZadThreeController {
 	@Autowired
 	private ZadThreeDataModel ztdm;
 	
+	private boolean displayResult = false;
+
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String springMVC(ModelMap modelMap) {
+		displayResult = false;
+		modelMap.addAttribute("displayResult", displayResult);
 		modelMap.addAttribute("zadThreeObject", ztdm);
 		return "zad3";
 	}
@@ -32,6 +37,8 @@ public class ZadThreeController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String springMVC(@ModelAttribute("precision")ZadThreeDataModel zad3Data, ModelMap modelMap, BindingResult result) {
+		displayResult = true;
+		modelMap.addAttribute("displayResult", displayResult);
 		Map<Double, Double> algResult1 = taskThree.EulerMethod(zad3Data.getN(), zad3Data.getB());
 		Map<Double, Double> algResult2 = taskThree.EulerMethodModified(zad3Data.getN(), zad3Data.getB());
 		Map<Double, Double> algResult3 = taskThree.HeunaMethod(zad3Data.getN(), zad3Data.getB());

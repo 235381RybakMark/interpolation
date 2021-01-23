@@ -65,13 +65,27 @@ function validateForm() {
 </script>
 </head>
 
-	    <form action = "zad3" method = "post" modelAttribute="zadThreeObject">
-         Enter n: <input type = "text" name = "n">
+<form action = "zad3" method = "post" modelAttribute="zadThreeObject" name="myForm" onsubmit="return validateForm()">
+<script>
+    function validateForm() {
+    	  var x = document.forms["myForm"]["one"].value;
+    	  var y = document.forms["myForm"]["two"].value;
+    	  
+    	  if (x < 1) {
+    	    var textbox = document.getElementById("one");
+    	    textbox.value = "Value must be greater or equals 1";    	    
+    	    return false;
+    	  }
+    	  
+    }    
+</script>
+		<h1>Numerical Methods for Differential Problems</h1>
+         Enter n: <input id="one" name="one" type = "text" name = "n">
          <br />
-         Enter b: <input type = "text" name = "b" />
+         Enter b: <input id="two" name="two" type = "text" name = "b" />
          <input type = "submit" value = "Submit" />
       	</form>
-      		<div>
+      		<div  id="resultData">
 			Euler algorithm result: <b>${key1}; ${value1}</b>
 			<br/>
 			Modified Euler algorithm result: <b>${key2}; ${value2}</b>
@@ -79,5 +93,8 @@ function validateForm() {
 			Heuna algorithm result: <b>${key3}; ${value3}</b>
 			<br/>
 			</div>
+			
+			<img src="/images/zad3Tresc.jpeg" class="img" />
+			
 </body>
 </html>
