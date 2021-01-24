@@ -65,14 +65,14 @@ function validateForm() {
 </script>
 </head>
 
-<form action = "zad3" method = "post" modelAttribute="zadThreeObject" name="myForm" onsubmit="return validateForm()">
+<form action = "zad3" method = "post" modelAttribute="zad3Data" name="myForm" onsubmit="return validateForm()">
 <script>
     function validateForm() {
-    	  var x = document.forms["myForm"]["one"].value;
-    	  var y = document.forms["myForm"]["two"].value;
+    	  var x = document.forms["myForm"]["n"].value;
+    	  var y = document.forms["myForm"]["b"].value;
     	  
     	  if (x < 1) {
-    	    var textbox = document.getElementById("one");
+    	    var textbox = document.getElementById("n");
     	    textbox.value = "Value must be greater or equals 1";    	    
     	    return false;
     	  }
@@ -80,9 +80,9 @@ function validateForm() {
     }    
 </script>
 		<h1>Numerical Methods for Differential Problems</h1>
-         Enter n: <input id="one" name="one" type = "text" name = "n">
+         Enter n: <input id="n" path="n" name="n" type = "text">
          <br />
-         Enter b: <input id="two" name="two" type = "text" name = "b" />
+         Enter b: <input id="b" path="b" name="b" type = "text"/>
          <input type = "submit" value = "Submit" />
       	</form>
       		<div  id="resultData">

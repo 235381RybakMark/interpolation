@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.algorithm.LagrangeaAlgorithm;
 import com.example.demo.algorithm.TaskThree;
@@ -20,25 +21,26 @@ public class ZadThreeController {
 	@Autowired
 	private TaskThree taskThree;
 		
-	@Autowired
-	private ZadThreeDataModel ztdm;
-	
+//	@Autowired
+//	private ZadThreeDataModel zad3Data;
+//	
 	private boolean displayResult = false;
 
-	
+	//return new ModelAndView("zad2", "ZadTwoDataModel", new ZadTwoDataModel());
 	@RequestMapping(method = RequestMethod.GET)
-	public String springMVC(ModelMap modelMap) {
+	public ModelAndView springMVC(ModelMap modelMap, ZadThreeDataModel zad3Data) {
 		displayResult = false;
 		modelMap.addAttribute("displayResult", displayResult);
-		modelMap.addAttribute("zadThreeObject", ztdm);
-		return "zad3";
+		modelMap.addAttribute("zad3Data", zad3Data);
+		return new ModelAndView("zad3", "ZadThreeDataModel", new ZadThreeDataModel());
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String springMVC(@ModelAttribute("precision")ZadThreeDataModel zad3Data, ModelMap modelMap, BindingResult result) {
+	public String springMVC(@ModelAttribute("zad3Data")ZadThreeDataModel zad3Data, ModelMap modelMap, BindingResult result) {
 		displayResult = true;
 		modelMap.addAttribute("displayResult", displayResult);
+		System.out.println(zad3Data.getN() + "   "+ zad3Data.getB() + "!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Map<Double, Double> algResult1 = taskThree.EulerMethod(zad3Data.getN(), zad3Data.getB());
 		Map<Double, Double> algResult2 = taskThree.EulerMethodModified(zad3Data.getN(), zad3Data.getB());
 		Map<Double, Double> algResult3 = taskThree.HeunaMethod(zad3Data.getN(), zad3Data.getB());
